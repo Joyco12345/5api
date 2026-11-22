@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML5 API - история, Canvas и Web Workers</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="verhnyaya-panel">
+    <button class="knopka-navigacii" id="knopka-nazad">Назад</button>
+    <button class="knopka-navigacii" id="knopka-vpered">Вперед</button>
+    <span class="adres-stranicy" id="tekushchaya-stranica">Текущая страница: Главная</span>
+  </div>
+
+  <main>
+
+    <section class="stranica aktualnaya-stranica" id="stranica-domashnyaya">
+      <h1>HTML5 API</h1>
+      <p class="opisanie">
+        Проект по теме HTML5 API: история браузера, графика на Canvas и Web Worker.
+      </p>
+
+      <div class="spisok-razdelov">
+        <a class="razdel" href="#istoriya">
+          <h2>1. История браузера</h2>
+          <p>Навигация по разделам через History API.</p>
+        </a>
+        <a class="razdel" href="#risovanie">
+          <h2>2. Графика и анимация</h2>
+          <p>Рисование мышкой и анимация на Canvas.</p>
+        </a>
+        <a class="razdel" href="#vychisleniya">
+          <h2>3. Web Workers</h2>
+          <p>Вычисления в фоновом потоке без блокировки страницы.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="stranica" id="stranica-istoriya">
+      <h1>1. История браузера</h1>
+      <p class="opisanie">
+        Переход между разделами выполняется через History API.
+      </p>
+
+      <div class="blok">
+        <button class="knopka" id="knopka-pro-smotrennyh">Показать просмотренные страницы</button>
+        <button class="knopka vtoraya-knopka" id="knopka-ochistit">Сбросить стек</button>
+        <p class="soobshchenie" id="soobshchenie-istorii"></p>
+      </div>
+
+      <div class="blok">
+        <h2>Страницы, которые уже открывались</h2>
+        <ul class="spisok-istoriya" id="spisok-istoriya"></ul>
+      </div>
+
+      <div class="blok">
+        <h2>Текущее положение</h2>
+        <p class="tekst-polozheniya" id="tekst-polozheniya">Состояние истории загружается.</p>
+        <p class="podskazka" id="podskazka-ukazateli"></p>
+      </div>
+    </section>
+
+    <section class="stranica" id="stranica-risovanie">
+      <h1>2. Графика и анимация</h1>
+      <p class="opisanie">
+        Рисование мышкой и анимация объектов на Canvas.
+      </p>
+
+      <div class="okno-holsta">
+        <canvas id="holst"></canvas>
+      </div>
+
+      <div class="blok upravlenie-canvas">
+        <label class="podpis-polya">Цвет
+          <input class="vybor-cveta" type="color" id="vybor-cveta" value="#60a5fa">
+        </label>
+
+        <label class="podpis-polya">Толщина
+          <input class="polzunok" type="range" id="polzunok-tolshchina" min="1" max="24" value="4">
+        </label>
+
+        <label class="podpis-polya">Скорость
+          <input class="polzunok" type="range" id="polzunok-skorost" min="0" max="100" value="40">
+        </label>
+
+        <label class="podpis-polya">Гравитация
+          <input class="polzunok" type="range" id="polzunok-gravitaciya" min="0" max="60" value="25">
+        </label>
+
+        <button class="knopka" id="knopka-pauza">Пауза</button>
+        <button class="knopka vtoraya-knopka" id="knopka-ochistka-holsta">Очистить</button>
+        <button class="knopka vtoraya-knopka" id="knopka-dobavit-chasticu">Добавить фигуру</button>
+        <button class="knopka vtoraya-knopka" id="knopka-provodnik">Искры</button>
+      </div>
+
+      <p class="soobshchenie" id="soobshchenie-holsta"></p>
+      <p class="podskazka" id="schetchik-chastic"></p>
+    </section>
+
+    <section class="stranica" id="stranica-vychisleniya">
+      <h1>3. Web Workers</h1>
+      <p class="opisanie">
+        Вычисление простых чисел в Web Worker с передачей прогресса на страницу.
+      </p>
+
+      <div class="blok upravlenie-vorkera">
+        <label class="podpis-polya">Считать простые числа до
+          <input class="pole-vvoda" type="number" id="pole-predel" min="1000" max="30000000" step="1000" value="2000000">
+        </label>
+
+        <button class="knopka" id="knopka-zapustit">Запустить</button>
+        <button class="knopka vtoraya-knopka" id="knopka-ostanovit" disabled>Остановить</button>
+      </div>
+
+      <div class="blok">
+        <div class="polosa-progressa">
+          <div class="polosa-progressa-zapolnenie" id="polosa-progressa"></div>
+        </div>
+        <p class="soobshchenie uspekh" id="soobshchenie-vorkera">Воркер готов к работе</p>
+        <p class="soobshchenie oshibka" id="oshibka-vorkera"></p>
+      </div>
+
+      <div class="blok" id="blok-rezultata" hidden>
+        <h2>Результат</h2>
+        <p class="stroka-rezultata">Найдено простых чисел: <span id="znachenie-kolichestvo">0</span></p>
+        <p class="stroka-rezultata">Время работы: <span id="znachenie-vremya">0</span> мс</p>
+        <p class="stroka-rezultata">Наибольшее найденное: <span id="znachenie-poslednee">0</span></p>
+      </div>
+
+      <div class="blok">
+        <h2>Проверка отзывчивости</h2>
+        <p class="opisanie">
+          Проверка того, что главный поток не заблокирован во время вычислений.
+        </p>
+        <button class="knopka" id="knopka-proverka">Проверить отзывчивость</button>
+        <p class="soobshchenie" id="soobshchenie-proverki">Нажатий: 0</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
